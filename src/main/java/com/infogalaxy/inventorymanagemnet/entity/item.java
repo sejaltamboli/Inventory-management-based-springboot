@@ -1,7 +1,13 @@
 package com.infogalaxy.inventorymanagemnet.entity;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class item {
 
+    @Id
     private int id;
     private String name;
     private String description;

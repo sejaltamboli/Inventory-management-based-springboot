@@ -1,24 +1,28 @@
 package com.infogalaxy.inventorymanagemnet.service;
 
 import com.infogalaxy.inventorymanagemnet.entity.item;
+import com.infogalaxy.inventorymanagemnet.repo.ItemRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ItemService implements IitemService{
 
-    ArrayList<item> itemArrayList = new ArrayList<>();
+    @Autowired
+    ItemRepo itemRepo;
 
     @Override
     public item addItem(item item1){
-        itemArrayList.add(item1);
+        itemRepo.save(item1);
         return item1;
     }
 
     @Override
-    public ArrayList<item> getallitems(){
-        return itemArrayList;
+    public List<item> getallitems(){
+        return itemRepo.findAll();
     }
 
     @Override
