@@ -2,6 +2,9 @@ package com.infogalaxy.inventorymanagemnet.controller;
 
 
 import com.infogalaxy.inventorymanagemnet.entity.item;
+import com.infogalaxy.inventorymanagemnet.service.IitemService;
+import com.infogalaxy.inventorymanagemnet.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,7 +13,12 @@ import java.util.ArrayList;
 @RequestMapping("/item/api")
 public class ItemController {
 
-    ArrayList<item> itemArrayList = new ArrayList<>();
+    //ItemService itemService = new ItemService();
+
+
+    @Autowired
+    IitemService itemService;
+
     @GetMapping("home")
     public String homepage() {
         return "Welcome to Item API";
@@ -18,24 +26,17 @@ public class ItemController {
 
     @PostMapping("/additem")
     public item addItem(@RequestBody item item1) {
-        itemArrayList.add(item1);
-        return item1;
+        return itemService.addItem(item1);
+
     }
 
     @GetMapping("/getitem")
     public item getitem() {
-          item item1 = new item();
-          item1.setId(1);
-          item1.setName("Pen");
-          item1.setDescription("Gel Pen");
-          item1.setPrice(5);
-          item1.setQuantity(100);
-          item1.setStatus("Available");
-          return item1;
+        return itemService.getitem();
     }
 
     @GetMapping("/getallitem")
     public ArrayList<item> getallitems() {
-        return itemArrayList;
+        return itemService.getallitems();
     }
 }
