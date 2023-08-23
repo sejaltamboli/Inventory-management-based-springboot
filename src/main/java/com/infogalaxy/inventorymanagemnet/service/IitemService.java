@@ -2,7 +2,6 @@ package com.infogalaxy.inventorymanagemnet.service;
 
 import com.infogalaxy.inventorymanagemnet.entity.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface IitemService {
@@ -11,6 +10,11 @@ public interface IitemService {
 
     public List<item> getallitems();
 
-    public item getitem();
+    public item getItemByID(int id);
+
+    public String deleteitembyid(int id);
+
+    public item updateitembyid(int id, item item);
+
 
 }

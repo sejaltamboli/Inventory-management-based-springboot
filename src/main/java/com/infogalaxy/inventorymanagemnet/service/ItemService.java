@@ -5,7 +5,6 @@ import com.infogalaxy.inventorymanagemnet.repo.ItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,16 +24,27 @@ public class ItemService implements IitemService{
         return itemRepo.findAll();
     }
 
-    @Override
-    public item getitem(){
-        item item1 = new item();
-        item1.setId(1);
-        item1.setName("Pen");
-        item1.setDescription("Gel Pen");
-        item1.setPrice(5);
-        item1.setQuantity(10);
-        item1.setStatus("Available");
-        return item1;
 
+    @Override
+    public item getItemByID(int id) {
+        return itemRepo.findById(id).get();
+    }
+
+    @Override
+    public String deleteitembyid(int id){
+        item item = getItemByID(id);
+        itemRepo.delete(item);
+        return "Item Deleted Successfully...";
+    }
+
+    @Override
+    public item updateitembyid(int id, item item) {
+        item olditem = getItemByID(id);
+        olditem.setName(item.getName());
+        olditem.setDescription(item.getDescription());
+        olditem.setPrice(item.getPrice());
+        olditem.setQuantity(item.getQuantity());
+        olditem.setStatus(item.getStatus());
+        return itemRepo.save(olditem);
     }
 }
