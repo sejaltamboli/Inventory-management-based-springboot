@@ -3,13 +3,16 @@ package com.infogalaxy.inventorymanagemnet.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class item {
 
     @Id
     private int id;
+    @NotBlank(message = "Please Enter the Item Name")
     private String name;
+    @NotBlank(message = "Please Enter the Description")
     private String description;
     private int price;
     private int quantity;

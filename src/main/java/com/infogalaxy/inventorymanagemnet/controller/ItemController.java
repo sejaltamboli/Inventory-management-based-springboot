@@ -4,15 +4,12 @@ package com.infogalaxy.inventorymanagemnet.controller;
 import com.infogalaxy.inventorymanagemnet.entity.item;
 import com.infogalaxy.inventorymanagemnet.responses.Responses;
 import com.infogalaxy.inventorymanagemnet.service.IitemService;
-import com.infogalaxy.inventorymanagemnet.service.ItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/item/api")
@@ -30,7 +27,7 @@ public class ItemController {
     }
 
     @PostMapping("/additem")
-    public ResponseEntity<?> addItem(@RequestBody item item1) {
+    public ResponseEntity<?> addItem(@RequestBody @Valid item item1) {
         Responses responses = new Responses("Item Added Successfully",HttpStatus.CREATED,itemService.addItem(item1));
         return new ResponseEntity<>(responses, HttpStatus.CREATED);
     }
