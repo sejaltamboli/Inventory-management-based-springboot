@@ -2,6 +2,7 @@ package com.infogalaxy.inventorymanagemnet.controller;
 
 
 import com.infogalaxy.inventorymanagemnet.entity.item;
+import com.infogalaxy.inventorymanagemnet.model.ItemModel;
 import com.infogalaxy.inventorymanagemnet.responses.Responses;
 import com.infogalaxy.inventorymanagemnet.service.IitemService;
 import jakarta.validation.Valid;
@@ -27,8 +28,8 @@ public class ItemController {
     }
 
     @PostMapping("/additem")
-    public ResponseEntity<?> addItem(@RequestBody @Valid item item1) {
-        Responses responses = new Responses("Item Added Successfully",HttpStatus.CREATED,itemService.addItem(item1));
+    public ResponseEntity<?> addItem(@RequestBody @Valid ItemModel itemModel) {
+        Responses responses = new Responses("Item Added Successfully",HttpStatus.CREATED,itemService.addItem(itemModel));
         return new ResponseEntity<>(responses, HttpStatus.CREATED);
     }
 

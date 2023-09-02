@@ -1,13 +1,14 @@
 package com.infogalaxy.inventorymanagemnet.service;
 
 import com.infogalaxy.inventorymanagemnet.entity.item;
+import com.infogalaxy.inventorymanagemnet.model.ItemModel;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IitemService {
 
-    public item addItem(item item1);
+    public item addItem(ItemModel itemModel);
 
     public List<item> getallitems();
 

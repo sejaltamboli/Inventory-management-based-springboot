@@ -2,17 +2,19 @@ package com.infogalaxy.inventorymanagemnet.entity;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Entity
 public class item {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank(message = "Please Enter the Item Name")
     private String name;
-    @NotBlank(message = "Please Enter the Description")
     private String description;
     private int price;
     private int quantity;

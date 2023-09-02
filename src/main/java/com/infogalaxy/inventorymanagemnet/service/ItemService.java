@@ -2,7 +2,9 @@ package com.infogalaxy.inventorymanagemnet.service;
 
 import com.infogalaxy.inventorymanagemnet.entity.item;
 import com.infogalaxy.inventorymanagemnet.exception.ItemNotFoundException;
+import com.infogalaxy.inventorymanagemnet.model.ItemModel;
 import com.infogalaxy.inventorymanagemnet.repo.ItemRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,15 @@ public class ItemService implements IitemService{
     ItemRepo itemRepo;
 
     @Override
-    public item addItem(item item1){
+    public item addItem(ItemModel itemModel){
+        item item1 = new item();
+//        item1.setId(itemModel.getId());
+//        item1.setName(itemModel.getName());
+//        item1.setDescription(itemModel.getDescription());
+//        item1.setPrice(itemModel.getPrice());
+//        item1.setQuantity(itemModel.getQuantity());
+//        item1.setStatus(itemModel.getStatus());
+        BeanUtils.copyProperties(itemModel,item1);
         itemRepo.save(item1);
         return item1;
     }
